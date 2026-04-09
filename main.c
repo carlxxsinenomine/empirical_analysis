@@ -2,44 +2,48 @@
 #include<time.h>
 #include <stdlib.h>
 
-void insertLast(int arr[], int *n, int val) {
-  arr[*n] = val;
-  (*n)++; // !ref
-}
-
 int main() {
-  unsigned long int MAX_RANGE = 4294967295;
-  srand((unsigned long int) time(NULL));
-  // User input
-  // int N = rand();
+
+  srand(time(NULL));
+
+  const unsigned long int MAX_RANGE = 4294967295;
   int N;
+  int x;
+  int choice;
+
+  printf("Enter the number of integers to be sorted: ");
   scanf("%d", &N);
-  int M;
-  printf("choose data generation meth: 1 or 2");
   int arr[N];
 
-  scanf("%d", &M);
-  int F;
-  if(M==1) {
-  // First method
-    for(int i=0; i<N;i++) {
-      insertLast(arr, &i, rand());
+  printf("Select Data Generation Method: \n 1. Randomly Generated Integers \n 2. Increasing Sequence \n Choice:");
+  scanf("%d", &choice);
+
+  if (choice == 1){
+    for(int i = 0; i < N; i++){
+    arr[i] = (rand() % MAX_RANGE + 1);
     }
-  } else {
-  // Sec Method 
-  int x;
-  printf("Enter a value for x");
-  scanf("%d", &x);
-  if(x < 0) return -1;
-  // For loop?
-  for(int i = 0; i < N; i++) {
-    // Prob
-    insertLast(arr, &i, (x + i)); // array, index, value 
+
+    for(int i = 0; i < N; i++){
+    printf("%d ", arr[i]);
+    }
   }
+
+  else {
+    printf("Enter starting value: ");
+    scanf("%d", &x);
+
+    for (int i = 0; i < N; i++){
+      arr[i] = x;
+      x++;
+    }
+
+    for(int i = 0; i < N; i++){
+    printf("%d ", arr[i]);
+    }
   }
-  int arrLen = sizeof(arr) / sizeof(arr[0]);
-  for (int i=0;i<arrLen; i++) {
-    printf("%d, ", arr[i]);
-  }
+  
+
+
   return 0;
+  
 }
